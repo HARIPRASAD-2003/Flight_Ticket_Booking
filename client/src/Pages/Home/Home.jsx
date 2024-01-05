@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
 
-const Home = ({ user, profile }) => {
+const Home = ({ user, profile, url }) => {
   const pageSize = 5; // Number of flights per page
   const [flights, setFlights] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,7 +69,7 @@ const Home = ({ user, profile }) => {
 
   const handleAddFlight = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/add-flight', {
+      const response = await fetch(url+'/api/add-flight', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ const Home = ({ user, profile }) => {
 
   const getAllFlights = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/all-flights?page=${currentPage}&pageSize=${pageSize}`, {
+      const response = await fetch(url+`/api/all-flights?page=${currentPage}&pageSize=${pageSize}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const Home = ({ user, profile }) => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/update', {
+      const response = await fetch(url+'/api/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

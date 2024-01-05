@@ -7,9 +7,10 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 const app = express();
-
+const client1 = 'http://localhost:3000';
+const client2 = '';
 app.use(cors({
-    origin: 'http://localhost:3000',  // Replace with your frontend's origin
+    origin: client1,  // Replace with your frontend's origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   }));
@@ -251,5 +252,5 @@ app.post('/api/add-flight', async (req, res) => {
   }
 });
 
-
-app.listen(5000, console.log("listening on port: 5000"));
+const port = process.env.PORT || 5000;
+app.listen(port, console.log(`listening on port: ${port}`));

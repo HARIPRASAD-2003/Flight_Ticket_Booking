@@ -7,7 +7,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Signup.css';
 import { Link } from 'react-router-dom';
 
-const Signup = () => {
+const Signup = ({url}) => {
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -21,7 +21,7 @@ const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/signup${user?'-users':'-admin'}`, {
+      const response = await fetch(url+`/api/signup${user?'-users':'-admin'}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

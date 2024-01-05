@@ -3,14 +3,14 @@ import TicketList from './TicketList';
 import UserInfo from './UserInfo'; // Create UserInfo component
 import './Profile.css'; // Import the CSS file
 
-const Profile = ({ user }) => {
+const Profile = ({ user, url }) => {
   const [tickets, setTickets] = useState([]);
 
   // Fetch user's tickets from the server
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user-tickets/${user.user_id}`);
+        const response = await fetch(url+`/api/user-tickets/${user.user_id}`);
         if (response.ok) {
           const data = await response.json();
           setTickets(data.tickets);

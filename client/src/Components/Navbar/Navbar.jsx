@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import "./Navbar.css"
 
-const Navbar = ({ mode, setMode, user }) => {
+const Navbar = ({ mode, setMode, user, url }) => {
   const navigate = useNavigate();
   const [isPopoverOpen, setPopoverOpen] = useState(false);
 

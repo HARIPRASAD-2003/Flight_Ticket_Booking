@@ -15,6 +15,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   // const navigate = useNavigate();
+  // const Base_URL = "https://flight-server.onrender.com";
+  const Base_URL = "http://localhost:5000";
 // 
   const fetchUser = () => {
     if(localStorage.getItem('user')){
@@ -42,13 +44,13 @@ function App() {
         <LoadingScreen />
       ) : (
       <Router>
-        <Navbar mode={mode} setMode={setMode} user={user}/>
+        <Navbar mode={mode} setMode={setMode} user={user} url={Base_URL}/>
         <div className='invis'></div>
         <Routes>
-          <Route path="/" element={<Home user={user} profile={profile}/>}/>
-          <Route path="/login" element={<LoginPage/>}/>
-          <Route path="/signup" element={<Signup/>}/>
-          <Route path="/profile" element={<Profile user={user}/>}/>
+          <Route path="/" element={<Home user={user} profile={profile} url={Base_URL}/>}/>
+          <Route path="/login" element={<LoginPage url={Base_URL}/>} />
+          <Route path="/signup" element={<Signup url={Base_URL}/>} />
+          <Route path="/profile" element={<Profile user={user} url={Base_URL}/>}/>
         </Routes>
       </Router>
       )}

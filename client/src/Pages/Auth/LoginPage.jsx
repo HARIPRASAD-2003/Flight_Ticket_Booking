@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Login.css';
 
-const Login = () => {
+const Login = ({url}) => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState('');
@@ -18,7 +18,7 @@ const Login = () => {
 
   const UserLogin = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/login-users', {
+      const response = await fetch(url+'/api/login-users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const Login = () => {
 
   const SellerLogin = async() => {
     try {
-      const response = await fetch('http://localhost:5000/api/login-admin',{
+      const response = await fetch(url+'/api/login-admin',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
