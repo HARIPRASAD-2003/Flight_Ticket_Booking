@@ -84,7 +84,7 @@ body {
   
   .eye-icon {
     position: absolute;
-    color: black;
+    /* color: black; */
     right: 20px;
     top: 60%;
     transform: translateY(-50%);

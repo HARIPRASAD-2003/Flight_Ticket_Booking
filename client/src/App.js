@@ -6,7 +6,7 @@ import LoginPage from './Pages/Auth/LoginPage';
 import Signup from './Pages/Auth/Signup'
 import LoadingScreen from './Components/LoadingScreen/LoadingScreen';
 
-import {BrowserRouter as Router, Routes, Route, Link, useNavigate} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './Pages/Home/Home';
 import Profile from './Pages/Profile/Profile';
 function App() {
