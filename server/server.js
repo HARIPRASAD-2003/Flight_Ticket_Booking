@@ -9,11 +9,13 @@ const cors = require('cors');
 const app = express();
 const client1 = 'http://localhost:3000';
 const client2 = '';
-app.use(cors({
-    origin: client1,  // Replace with your frontend's origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-  }));
+// app.use(cors({
+//     origin: client1,  // Replace with your frontend's origin
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//   }));
+app.use(cors());
+app.use(express.json());
   
 app.use(bodyParser.json());
   
