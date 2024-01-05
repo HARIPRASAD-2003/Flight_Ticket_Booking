@@ -1,0 +1,101 @@
+/* Assuming you have already imported the Font Awesome styles */
+/* You can include this in your existing CSS file */
+
+.navbar {
+  background-color: black;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid white;
+}
+
+.logo {
+  padding: 5px;
+}
+
+.logo img {
+  padding-left: 20px;
+  max-width: 40px;
+  height: auto;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+}
+
+.login-signup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.login-signup > * {
+  flex: 1;
+  margin: 0 1px;
+}
+
+.login-signup button {
+  background-color: red;
+  text-wrap: nowrap;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-signup button:hover {
+  background-color: #2980b9;
+}
+
+.user-popover {
+  position: relative;
+}
+
+.avatar {
+  width: 20px;
+  font-size: large;
+  color: #fff;
+  cursor: pointer;
+}
+
+.popover-content {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  color: black;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.popover-content div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.popover-content div:hover {
+  background-color: #f5f5f5;
+}
+
+.mode-toggle {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 18px;
+}

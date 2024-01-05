@@ -1,0 +1,46 @@
+/* Style for Ticket Card */
+.ticket-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 16px;
+    max-width: 300px;
+    transition: box-shadow 0.3s, transform 0.3s; /* Adding transition for better user interaction */
+  }
+  
+  .ticket-card h3 {
+    color: #333333;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .ticket-card p {
+    color: #666666;
+    margin: 8px 0;
+  }
+  
+  /* Hover effect for better user interaction */
+  .ticket-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* Style for Ticket List */
+  .ticket-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .ticket h2 {
+    font-size: 1.5rem;
+    color: #333333;
+    margin-bottom: 16px;
+  }
+  
+  .ticket p {
+    color: #666666;
+  }
+  
