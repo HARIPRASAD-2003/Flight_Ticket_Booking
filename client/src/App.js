@@ -15,8 +15,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   // const navigate = useNavigate();
-  // const Base_URL = "https://flight-server.onrender.com";
-  const Base_URL = "http://localhost:5000";
+  const Base_URL = "https://flight-server.onrender.com";
+  // const Base_URL = "http://localhost:5000";
 // 
   const fetchUser = () => {
     if(localStorage.getItem('user')){
