@@ -87,9 +87,9 @@
   cursor: pointer;
 }
 
-.popover-content div:hover {
+/* .popover-content div:hover {
   background-color: #f5f5f5;
-}
+} */
 
 .mode-toggle {
   color: #fff;

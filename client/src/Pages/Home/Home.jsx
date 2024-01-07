@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
+import InputField from '../../Components/InputField/InputField';
 
 const Home = ({ user, profile, url }) => {
   const pageSize = 5; // Number of flights per page
@@ -32,7 +33,7 @@ const Home = ({ user, profile, url }) => {
     setPassengerDetailsage('');
   };
 
-  const TicketModal = ({ showModal, closeModal, handleBookTicket, flight }) => {
+  const TicketModal = ({ showModal, closeModal, passengerDetailsage, setPassengerDetailsage, passengerDetailsname, setPassengerDetailsname, handleBookTicket, flight }) => {
     return (
       showModal && (
         <div className='modal-overlay'>
@@ -67,7 +68,7 @@ const Home = ({ user, profile, url }) => {
     });
   };
 
-  const handleAddFlight = async () => {
+  const handleAddFlight = async() => {
     try {
       const response = await fetch(url+'/api/add-flight', {
         method: 'POST',
@@ -120,8 +121,9 @@ const Home = ({ user, profile, url }) => {
 
   const handleBookTicket = async(flight) => {
     try {
+      
       if (!passengerDetailsname || !passengerDetailsage) {
-        console.error('Please provide both name and age for the passenger.');
+        alert('Please provide both name and age for the passenger.');
         return;
       }
 
@@ -155,6 +157,10 @@ const Home = ({ user, profile, url }) => {
   };
 
   const handleTicket = async (flight) => {
+    if(profile===null) {
+      alert('login to book tickets');
+      return;
+    } 
     setSelectedFlight(flight);
     openModal();
   };
@@ -163,9 +169,9 @@ const Home = ({ user, profile, url }) => {
     setCurrentPage(newPage);
   };
 
-  const handleSearch = () => {
-    getAllFlights();
-  };
+  // const handleSearch = () => {
+  //   getAllFlights();
+  // };
 
   useEffect(() => {
     getAllFlights();
@@ -174,7 +180,7 @@ const Home = ({ user, profile, url }) => {
   return (
     <div className='Home-main'>
       <div className='Search'>
-        <input
+        {/* <input
           type='text'
           placeholder='From'
           value={searchParams.from}
@@ -191,8 +197,12 @@ const Home = ({ user, profile, url }) => {
           placeholder='Date'
           value={searchParams.date}
           onChange={(e) => setSearchParams({ ...searchParams, date: e.target.value })}
-        />
-        <button onClick={handleSearch}>Search</button>
+        /> */}
+        <InputField type={'text'} Name={'From'} value={searchParams.from} onChanges={(e) => setSearchParams({ ...searchParams, from: e.target.value })}/>
+        <InputField type={'text'} Name={'To'} value={searchParams.to} onChanges={(e) => setSearchParams({ ...searchParams, to: e.target.value })}/>
+        <InputField type={'date'} Name={'Date'} value={searchParams.date} onChanges={(e) => setSearchParams({ ...searchParams, date: e.target.value })}/>
+
+        {/* <button onClick={handleSearch}>Search</button> */}
       </div>
 
       <div className='Table'>
@@ -261,15 +271,23 @@ const Home = ({ user, profile, url }) => {
         </div>
       </div>
       {profile === 'admin' && (
-        <div className='AdminPanel'>
+        <div className='AdminPanel' style={{justifyContent: 'center'}}>
           <h2>Add New Flight</h2>
-          <div className='AddFlightForm'>
-            <label>Flight Name</label>
-            <input type='text' name='f_name' value={newFlight.f_name} onChange={handleInputChange} />
+          <div style={{display:'flex', flexWrap:'wrap', gap:'10px'}}>
+            {/* <label>Flight Name</label> */}
+            <InputField type={'text'} Name={'Flight_Name'} value={newFlight.f_name} onChanges={(e) => setNewFlight({...newFlight, f_name: e.target.value,})}/>
+            {/* <input type='text' name='f_name' value={newFlight.f_name} onChange={handleInputChange} /> */}
 
-            <label>From</label>
-            <input type='text' name='f_from' value={newFlight.f_from} onChange={handleInputChange} />
+            {/* <label>From</label> */}
+            <InputField type={'text'} Name={'From'} value={newFlight.f_from} onChanges={(e) => setNewFlight({...newFlight, f_from: e.target.value,})}/>
+            <InputField type={'text'} Name={'To'} value={newFlight.f_to} onChanges={(e) => setNewFlight({...newFlight, f_to: e.target.value,})}/>
+            <InputField type={'date'} Name={'Date'} value={newFlight.f_date} onChanges={(e) => setNewFlight({...newFlight, f_date: e.target.value,})}/>
+            <InputField type={'time'} Name={'Arrival_Time'} value={newFlight.f_arrive} onChanges={(e) => setNewFlight({...newFlight, f_arrive: e.target.value,})}/>
+            <InputField type={'time'} Name={'Departure_Time'} value={newFlight.f_depart} onChanges={(e) => setNewFlight({...newFlight, f_depart: e.target.value,})}/>
+            <InputField type={'number'} Name={'Available_Tickets'} value={newFlight.avt} onChanges={(e) => setNewFlight({...newFlight, avt: e.target.value,})}/>
 
+            {/* <input type='text' name='f_from' value={newFlight.f_from} onChange={handleInputChange} /> */}
+{/* 
             <label>To</label>
             <input type='text' name='f_to' value={newFlight.f_to} onChange={handleInputChange} />
 
@@ -283,20 +301,43 @@ const Home = ({ user, profile, url }) => {
             <input type='time' name='f_depart' value={newFlight.f_depart} onChange={handleInputChange} />
 
             <label>Available Tickets</label>
-            <input type='number' name='avt' value={newFlight.avt} onChange={handleInputChange} />
+            <input type='number' name='avt' value={newFlight.avt} onChange={handleInputChange} /> */}
 
-            <button onClick={handleAddFlight}>Add Flight</button>
           </div>
+            <button onClick={handleAddFlight}>Add Flight</button>
         </div>
       )}
-    <TicketModal
+    {/* <TicketModal
         showModal={showModal}
         closeModal={closeModal}
-        // passengerDetails={passengerDetails}
-        // setPassengerDetails={setPassengerDetails}
+        passengerDetailsname={passengerDetailsname}
+        setPassengerDetailsname={setPassengerDetailsname}
+        passengerDetailsage={passengerDetailsage}
+        setPassengerDetailsage={setPassengerDetailsage}
         handleBookTicket={handleBookTicket}
         flight={selectedFlight}
-      />
+      /> */}
+      {showModal && 
+        <div className='modal-overlay'>
+          <div className='modal-content'>
+            <h2>Enter Passenger Details</h2>
+            <label htmlFor='bookname'>Name:</label>
+            <input
+              type='text'
+              value={passengerDetailsname}
+              onChange={(e) => setPassengerDetailsname(e.target.value)}
+            />
+            <label htmlFor='bookage'>Age:</label>
+            <input
+              type='number'
+              id=''
+              value={passengerDetailsage}
+              onChange={(e) => setPassengerDetailsage(e.target.value )}
+            />
+            <button onClick={() => handleBookTicket(selectedFlight)}>Book Ticket</button>
+            <button onClick={() => closeModal()}>Cancel</button>
+          </div>
+        </div>}
 
     </div>
   );

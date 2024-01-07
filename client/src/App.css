@@ -1,15 +1,17 @@
 .dark-mode {
-  background-color: rgb(0, 0, 0); /* Dark mode background color */
-  color: #fff; /* Dark mode text color */
-  /* height: 100%; */
+  background-color: rgb(0, 0, 0);
+  color: #fff;
 }
 
 .light-mode {
-  background-color: white; /* Light mode background color */
-  color: #333; /* Light mode text color */
-  /* height: 100%; */
-  
+  background-color: white;
+  color: #333;
 }
+
+body {
+  overflow-y: scroll;
+}
+
 /* Hide the default scrollbar */
 body::-webkit-scrollbar {
   width: 0;
@@ -19,14 +21,6 @@ body::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 
-body {
-  /* Optional: Add padding to compensate for the scrollbar width */
-  /* padding-right: 0.5em; */
-  /* Enable scrolling */
-  overflow-y: scroll;
-}
-
-/* Your CSS file or style section */
 footer {
   background-color: #333;
   color: white;
@@ -34,20 +28,18 @@ footer {
   padding: 5px;
 }
 
-.invis{
+.invis {
   padding: 40px;
 }
 
 footer p {
-  margin: 0; /* Remove default margin for the paragraph inside the footer */
+  margin: 0;
 }
 
-body{
+body {
   height: 100%;
 }
 
-/* Add these styles to your existing CSS file */
-/* Add these styles to your existing CSS file */
 .fade-enter {
   opacity: 0;
   transform: scale(0.9);
@@ -68,4 +60,17 @@ body{
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  /* body{
+    Adjust body styles for smaller screens if needed
+  } */
+
+  .invis {
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  /* Add more responsive styles as needed */
 }

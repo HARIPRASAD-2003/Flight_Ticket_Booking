@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useState}from 'react';
 import './TicketList.css';
 
-const TicketCard = ({ ticket, onCancelTicket }) => {
+import Card from '../../Components/Card/Card';
+const TicketCard = ({ ticket, setShowModal,  setSelectedTicket}) => {
   const handleCancelClick = () => {
-    // Pass the ticket ID or any other necessary information to the onCancelTicket function
-    // onCancelTicket(ticket.t_id);
+    setSelectedTicket(ticket);
+    setShowModal(true);
   };
+
+  
+
+  
 
   return (
     <div className="ticket-card">
@@ -33,19 +38,22 @@ const TicketCard = ({ ticket, onCancelTicket }) => {
           year: 'numeric',
         })}   
       </p>
-      <button onClick={handleCancelClick}>Cancel Ticket</button>
-    </div>
+        {(ticket.stat==='Active') ? 
+        <button onClick={handleCancelClick} style={{backgroundColor:'red'}}>Cancel Ticket</button> : 
+        <button style={{backgroundColor:'gray'}}>Cancelled</button>}
+      </div>  
   );
 };
 
-const TicketList = ({ tickets, onCancelTicket }) => {
+const TicketList = ({ tickets, setShowModal, setSelectedTicket }) => {
+  
   return (
     <div className="ticket">
       <h2>Your Tickets</h2>
       <div className="ticket-list">
         {tickets.length > 0 ? (
           tickets.map((ticket, index) => (
-            <TicketCard key={index} ticket={ticket} onCancelTicket={onCancelTicket} />
+            <Card key={index} ticket={ticket} setShowModal={setShowModal} setSelectedTicket={setSelectedTicket}/>
           ))
         ) : (
           <p>No tickets available</p>

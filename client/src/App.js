@@ -10,13 +10,13 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Home from './Pages/Home/Home';
 import Profile from './Pages/Profile/Profile';
 function App() {
-  const [mode, setMode] = useState(false);
+  const [mode, setMode] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   // const navigate = useNavigate();
-  const Base_URL = "https://flight-server.onrender.com";
-  // const Base_URL = "http://localhost:5000";
+  // const Base_URL = "https://flight-server.onrender.com";
+  const Base_URL = "http://localhost:5000";
 // 
   const fetchUser = () => {
     if(localStorage.getItem('user')){
@@ -36,10 +36,12 @@ function App() {
     // setTimeout(() => {
     //   setIsLoading(false);
     // }, 2000);
-  }, []);
+    document.body.className = mode ? 'light-mode' : 'dark-mode';
+
+  }, [mode]);
 
   return (
-    <div className={(mode) ? 'light-mode' : 'dark-mode'}>
+    <div >
       {isLoading ? (
         <LoadingScreen />
       ) : (
@@ -50,7 +52,7 @@ function App() {
           <Route path="/" element={<Home user={user} profile={profile} url={Base_URL}/>}/>
           <Route path="/login" element={<LoginPage url={Base_URL}/>} />
           <Route path="/signup" element={<Signup url={Base_URL}/>} />
-          <Route path="/profile" element={<Profile user={user} url={Base_URL}/>}/>
+          <Route path="/profile" element={<Profile user={user} url={Base_URL} profile={profile}/>} />
         </Routes>
       </Router>
       )}

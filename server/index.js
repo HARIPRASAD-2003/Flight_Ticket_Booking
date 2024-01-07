@@ -203,14 +203,14 @@ app.post('/api/update', async (req, res) => {
 // Server-side code (Express.js)
 app.get('/api/user-tickets/:userId', async (req, res) => {
   const userId = req.params.userId;
-
+  console.log("user-ticket")
   try {
     // Fetch user's tickets with corresponding flight details
     const query = `
       SELECT ticket.*, flight.f_name, flight.f_from, flight.f_to, flight.f_date
       FROM ticket
       JOIN flight ON ticket.f_id = flight.f_id
-      WHERE user_id = ${userId};
+      WHERE user_id = ${userId} and ticket.stat='ACtive';
     `;
     const tickets = await executeQuery(query);
 
@@ -221,6 +221,24 @@ app.get('/api/user-tickets/:userId', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post('/api/cancel-ticket', async(req, res) => {
+  const {t_id} = req.body;
+  try {
+    const query = `UPDATE ticket JOIN flight ON ticket.f_id = flight.f_id SET ticket.stat = 'Cancel', flight.avt = flight.avt + 1 WHERE ticket.t_id = ${t_id};`;
+    const response = await executeQuery(query);
+    if (response.affectedRows > 0){
+      // const query2 = `SELECT * from ticket where t_id=${t_id};`;
+      // const ticket = await executeQuery(query2);
+      // const query3 = `UPDATE flight SET avt=avt+1 where f_id`
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    
+  }
+})
 
 app.post('/api/add-flight', async (req, res) => {
   const { f_name, f_from, f_to, f_date, f_arrive, f_depart, avt } = req.body;

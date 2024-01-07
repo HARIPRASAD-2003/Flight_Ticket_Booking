@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 import "./Navbar.css"
+import SettingsMenu from '../Menu/SettingsMenu';
 
 const Navbar = ({ mode, setMode, user, url }) => {
   const navigate = useNavigate();
@@ -32,6 +33,9 @@ const Navbar = ({ mode, setMode, user, url }) => {
           <div className='login-signup'>
             <button onClick={() => navigate('/login')}>Login</button>
             <button onClick={() => navigate('/signup')}>Sign Up</button>
+            {<div className='mode-toggle' onClick={() => setMode(!mode)}>
+          {mode ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
+        </div>}
           </div> : 
           <div className='user-popover'>
             <div className='avatar' onClick={handleAvatarClick}>
@@ -39,15 +43,12 @@ const Navbar = ({ mode, setMode, user, url }) => {
             </div>
             {isPopoverOpen && (
               <div className='popover-content'>
-                <div onClick={() => {navigate('/profile'); handleAvatarClick()}}>Profile</div>
-                <div onClick={() => handleLogout()}>Logout</div>
+                <SettingsMenu mode={mode} setMode={setMode} logout={handleLogout}/>
               </div>
             )}
           </div>
         }
-        <div className='mode-toggle' onClick={() => setMode(!mode)}>
-          {mode ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
-        </div>
+        <div className="mode-toggle"></div>
       </div>
     </nav>
   );
